@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+apply from: '../buildSrc/dependencies.gradle'
+apply from: '../buildSrc/env.gradle'
+
+
+android {
+    compileSdkVersion compileVersion
+
+    defaultConfig {
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    sourceSets {
+        test.resources.srcDirs += 'src/test/resources'
+    }
+}
+
+android.libraryVariants.all { v ->
+    if (v.buildType.name == "debug") {
+        apply plugin: "kotlin-allopen"
+        allOpen {
+            annotation('com.skyscanner.data.util.Mockable')
+        }
+    }
+}
+
+dependencies {
+    implementation project(':data')
+
+    implementation androidxDependencies.coreKtx
+    implementation kotlinDependencies.stdLib
+    implementation coroutinesDependencise.core
+
+    implementation squareDependencies.retrofit
+    implementation squareDependencies.converterGson
+    implementation squareDependencies.okhttp
+    api squareDependencies.interceptor
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.mockitoCore
+    testImplementation testDependencies.mockitoKotlin
+    testImplementation kotson
+}

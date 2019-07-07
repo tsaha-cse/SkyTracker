@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SkyTracker</string>
+
+    <string name="menu_search">Search</string>
+    <string name="menu_more">More</string>
+    <string name="btn_sort_n_filters">Sort &amp; Filters</string>
+    <string name="btn_reload">Flights Error. Reload?</string>
+
+    <plurals name="plural_adult">
+        <item quantity="one">adult</item>
+        <item quantity="other">adults</item>
+    </plurals>
+
+    <string name="format_schedule">%1s - %2s</string>
+    <string name="format_from_to">%1s-%2s, %3s</string>
+    <string name="format_price">%1s%2.02f</string>
+    <string name="format_agent">via %s</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCarrierLogo"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@android:drawable/alert_dark_frame" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/text_size_primary"
+        app:layout_constraintBottom_toTopOf="@+id/tvPlaceAgentDetails"
+        app:layout_constraintLeft_toRightOf="@+id/ivCarrierLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="15:35 - 17:30"
+        android:layout_marginTop="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPlaceAgentDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/text_size_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/ivCarrierLogo"
+        app:layout_constraintTop_toBottomOf="@+id/tvSchedule"
+        tools:text="EDI-LOND, WizzAir"
+        android:layout_marginBottom="8dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvStops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Direct"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/text_size_primary"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvSchedule" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/text_size_primary"
+        app:layout_constraintRight_toRightOf="@+id/tvStops"
+        app:layout_constraintTop_toBottomOf="@+id/tvStops"
+        tools:text="2h 25m" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

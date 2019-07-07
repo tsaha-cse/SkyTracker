@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00b3d9</color>
+    <color name="colorPrimaryDark">#0097b9</color>
+    <color name="colorAccent">#00b3d9</color>
+    <color name="textColorPrimary">#544c63</color>
+    <color name="textColorSecondary">#a5a0a8</color>
+    <color name="cellBackground">#fafafa</color>
+    <color name="separatorInCell">#dbdbdb</color>
+    <color name="windowBackground">#f6f4f7</color>
+</resources>

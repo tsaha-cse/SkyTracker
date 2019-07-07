@@ -1,0 +1,11 @@
+package com.skyscanner.skytracker.util
+
+import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.RecordedRequest
+
+class ErrorDispatcher : Dispatcher() {
+    override fun dispatch(request: RecordedRequest?): MockResponse {
+        return MockResponse().setResponseCode(404)
+    }
+}

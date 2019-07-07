@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+apply from: '../buildSrc/dependencies.gradle'
+apply from: '../buildSrc/env.gradle'
+
+android {
+    compileSdkVersion compileVersion
+    defaultConfig {
+        applicationId "com.skyscanner.skytracker"
+        minSdkVersion minVersion
+        targetSdkVersion targetVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "com.skyscanner.skytracker.base.BaseTestRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        vectorDrawables.useSupportLibrary = true
+
+        buildConfigField "String", "SKY_SCANNER_BASE_URL", "\"http://partners.api.skyscanner.net/apiservices/\""
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.returnDefaultValues = true
+    }
+
+    sourceSets {
+        main { assets.srcDirs = ['src/main/assets', 'src/androidTest/assets/', 'src/main/assets/'] }
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':presentation')
+    implementation project(':data')
+
+    implementation androidxDependencies.multidex
+
+    implementation kotlinDependencies.stdLib
+
+    implementation koinDependencies.core
+    implementation koinDependencies.viewModelX
+
+    implementation coroutinesDependencise.core
+    implementation coroutinesDependencise.android
+    implementation squareDependencies.converterGson
+
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.design
+    implementation androidxDependencies.coreKtx
+    implementation androidxDependencies.constraintLayout
+    implementation androidxDependencies.lifecycleExtensions
+    annotationProcessor androidxDependencies.lifecylceCompiler
+    implementation androidxDependencies.lifecycleViewmodel
+
+    implementation imageDependencies.glideCore
+    annotationProcessor imageDependencies.glideAnnotationProcessor
+
+    implementation jakeWhartonDependencies.timber
+
+    androidTestImplementation testDependencies.androidXTestCore
+    androidTestImplementation testDependencies.androidXRunner
+    androidTestImplementation testDependencies.androidXTestRule
+    androidTestImplementation testDependencies.androidXJunit
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.mockWebServer
+}
