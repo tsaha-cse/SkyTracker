@@ -29,7 +29,6 @@ class TripListActivityTest {
 
     @Before
     fun setup() {
-        activityTestRule
         mockWebServer.start(PORT)
     }
 

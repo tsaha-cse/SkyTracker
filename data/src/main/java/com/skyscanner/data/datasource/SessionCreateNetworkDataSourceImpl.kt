@@ -15,26 +15,24 @@ class SessionCreateNetworkDataSourceImpl(
     private val skyScannerService: SkyScannerService
 ) : SessionCreateNetworkDataSource {
 
-    override suspend fun getSessionId(input: SessionInput): String {
-        with(input) {
-            skyScannerService.createSession(
-                BuildConfig.SKY_SCANNER_API_KEY,
-                locationSchema,
-                country,
-                currency,
-                locale,
-                placeOfOrigin,
-                placeOfDestination,
-                outboundDate,
-                inboundDate,
-                adults,
-                cabinClassType
-            )
-        }.run {
-            return this.raw().header(HEADER_KEY_LOCATION)?.let { header ->
-                header.substring(header.lastIndexOf('/') + 1)
-            } ?: throw SessionNotCreatedException(code(), getApiErrorMeaning())
-        }
+    override suspend fun getSessionId(input: SessionInput): String = with(input) {
+        skyScannerService.createSession(
+            BuildConfig.SKY_SCANNER_API_KEY,
+            locationSchema,
+            country,
+            currency,
+            locale,
+            placeOfOrigin,
+            placeOfDestination,
+            outboundDate,
+            inboundDate,
+            adults,
+            cabinClassType
+        )
+    }.run {
+        return this.raw().header(HEADER_KEY_LOCATION)?.let { header ->
+            header.substring(header.lastIndexOf('/') + 1)
+        } ?: throw SessionNotCreatedException(code(), getApiErrorMeaning())
     }
 
     companion object {

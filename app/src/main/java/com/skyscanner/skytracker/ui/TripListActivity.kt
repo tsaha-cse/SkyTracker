@@ -24,7 +24,7 @@ class TripListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListen
 
     private val flightListViewModel: FlightListViewModel by viewModel()
 
-    private lateinit var flightListAdapter: FlightListAdapter
+    private lateinit var tripListAdapter: TripListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +69,14 @@ class TripListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListen
     private fun setupRecyclerView() {
         pullToRefresh.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorAccent))
         pullToRefresh.setOnRefreshListener(this)
-        flightListAdapter = FlightListAdapter { _, selectedTrip: Trip ->
+        tripListAdapter = TripListAdapter { _, selectedTrip: Trip ->
             Toast.makeText(
                 this,
                 selectedTrip.totalPrice.toString(),
                 Toast.LENGTH_SHORT
             ).show()
         }
-        rvTripList.adapter = flightListAdapter
+        rvTripList.adapter = tripListAdapter
         rvTripList.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -120,7 +120,7 @@ class TripListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListen
         if (rvTripList.visibility != View.VISIBLE) {
             rvTripList.visibility = View.VISIBLE
         }
-        flightListAdapter.submitList(tripList)
+        tripListAdapter.submitList(tripList)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

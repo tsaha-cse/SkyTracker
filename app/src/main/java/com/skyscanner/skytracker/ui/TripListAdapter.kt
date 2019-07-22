@@ -12,11 +12,11 @@ import com.skyscanner.skytracker.base.BaseViewHolder
 import kotlinx.android.synthetic.main.layout_row_trip.view.*
 import kotlinx.android.synthetic.main.layout_single_trip.view.*
 
-class FlightListAdapter(private val onTripOnClick: (position: Int, selectedTrip: Trip) -> Unit) :
+class TripListAdapter(private val onTripOnClick: (position: Int, selectedTrip: Trip) -> Unit) :
     ListAdapter<Trip, BaseViewHolder<Trip>>(DiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Trip> =
-        FlightViewHolder(
+        TripViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.layout_row_trip,
                 parent,
@@ -37,7 +37,7 @@ class DiffUtil : DiffUtil.ItemCallback<Trip>() {
     override fun areContentsTheSame(oldItem: Trip, newItem: Trip): Boolean = oldItem == newItem
 }
 
-class FlightViewHolder(
+class TripViewHolder(
     itemView: View,
     private val onTripOnClick: (position: Int, selectedTrip: Trip) -> Unit
 ) : BaseViewHolder<Trip>(itemView) {
