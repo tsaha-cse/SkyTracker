@@ -74,7 +74,7 @@ class SessionRepositoryImplTest : BaseTest() {
             "LOND",
             "LOND-sky",
             "2019-07-08",
-            "2019-07-00",
+            "2019-07-08",
             1,
             "economy"
         )

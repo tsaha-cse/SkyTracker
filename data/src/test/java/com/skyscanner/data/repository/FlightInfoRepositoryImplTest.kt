@@ -42,6 +42,7 @@ class FlightInfoRepositoryImplTest : BaseTest() {
             ).thenReturn(Response.success(flightInfo))
 
             assertEquals(flightInfo, flightInfoRepository.getFlightInfo(aSessionId))
+            return@runBlocking
         }
 
     @Test

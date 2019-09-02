@@ -25,7 +25,7 @@ class SessionSharedPreferenceStorage(
     override fun getSessionId(input: SessionInput): String =
         sharedPreferences.getString(SESSION_KEY, null)?.let {
             val session: Session? = gson.fromJson(it)
-            if (session != null && session.sessionInput == input) {
+            if (session?.sessionInput == input) {
                 if (isWithIn30Mins(session.timeStamp)) {
                     session.sessionId
                 } else throw InvalidSessionException()

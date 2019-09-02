@@ -21,16 +21,17 @@ class SessionRepositoryImpl(
      */
     override suspend fun getSessionId(byForce: Boolean, input: SessionInput): String =
         if (byForce) {
-            sessionCreateNetworkDataSource.getSessionId(input).also {
-                sessionInDeviceStorage.storeSession(it, input)
-            }
+            createSessionFromNetworkSource(input)
         } else {
             try {
                 sessionInDeviceStorage.getSessionId(input)
             } catch (e: InvalidSessionException) {
-                sessionCreateNetworkDataSource.getSessionId(input).also {
-                    sessionInDeviceStorage.storeSession(it, input)
-                }
+                createSessionFromNetworkSource(input)
             }
+        }
+
+    private suspend fun createSessionFromNetworkSource(input: SessionInput): String =
+        sessionCreateNetworkDataSource.getSessionId(input).also {
+            sessionInDeviceStorage.storeSession(it, input)
         }
 }

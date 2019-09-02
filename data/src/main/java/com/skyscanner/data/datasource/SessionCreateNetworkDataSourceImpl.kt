@@ -28,11 +28,11 @@ class SessionCreateNetworkDataSourceImpl(
             inboundDate,
             adults,
             cabinClassType
-        )
-    }.run {
-        return this.raw().header(HEADER_KEY_LOCATION)?.let { header ->
-            header.substring(header.lastIndexOf('/') + 1)
-        } ?: throw SessionNotCreatedException(code(), getApiErrorMeaning())
+        ).run {
+            return this.raw().header(HEADER_KEY_LOCATION)?.let { header ->
+                header.substring(header.lastIndexOf('/') + 1)
+            } ?: throw SessionNotCreatedException(code(), getApiErrorMeaning())
+        }
     }
 
     companion object {

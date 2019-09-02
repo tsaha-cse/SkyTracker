@@ -66,7 +66,7 @@ class FlightListViewModel(
             }
         }
 
-    private suspend fun getSessionId(byForce: Boolean) =
+    private suspend fun getSessionId(byForce: Boolean): Result<String> =
         getSessionIdUseCase(SessionIdUseCaseParam(byForce, sessionInput))
 
     private fun loadFlightInfo(sessionId: String) =

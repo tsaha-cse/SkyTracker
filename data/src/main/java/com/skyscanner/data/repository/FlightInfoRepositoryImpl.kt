@@ -16,10 +16,8 @@ class FlightInfoRepositoryImpl(
 
     override suspend fun getFlightInfo(sessionId: String): FlightInfo =
         with(skyScannerService.getFlightInfo(sessionId, BuildConfig.SKY_SCANNER_API_KEY)) {
-            body()?.let {
-                return it
-            } ?: throw FlightListingException(code(), getApiErrorMeaning())
+            return body() ?: throw FlightListingException(code(), getApiErrorMeaning())
         }
 }
 
-class FlightListingException(val errorCode: Int, val meaning: String) : RuntimeException(meaning)
+class FlightListingException(val errorCode: Int, meaning: String) : RuntimeException(meaning)
