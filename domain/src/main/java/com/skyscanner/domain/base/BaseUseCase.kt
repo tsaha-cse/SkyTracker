@@ -14,6 +14,6 @@ abstract class BaseUseCase<in Param, out T> {
         Result.Success(build(param))
     } catch (e: Exception) {
         e.printStackTrace()
-        Result.Failure(Result.Reason(exception = e))
+        Result.Failure(Reason(exception = e))
     }
 }

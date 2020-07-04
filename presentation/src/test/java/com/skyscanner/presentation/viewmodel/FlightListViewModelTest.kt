@@ -3,6 +3,7 @@ package com.skyscanner.presentation.viewmodel
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
+import com.skyscanner.domain.base.Reason
 import com.skyscanner.domain.base.Result
 import com.skyscanner.domain.model.Trip
 import com.skyscanner.domain.usecase.GetSessionIdUseCase
@@ -52,7 +53,7 @@ class FlightListViewModelTest : BaseTest() {
     @Test
     fun `Should not return flight list`() {
         getSessionIdUseCase = mock {
-            onBlocking { invoke(any()) } doReturn Result.Failure(Result.Reason(exception = RuntimeException()))
+            onBlocking { invoke(any()) } doReturn Result.Failure(Reason(exception = RuntimeException()))
         }
         getTripInfoUseCase = mock {
             onBlocking { invoke(aSessionId) } doReturn Result.Success(flightList)
