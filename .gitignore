@@ -48,3 +48,6 @@ Thumbs.db
 
 #Composer files
 *.output
+
+# Build data
+secret.properties

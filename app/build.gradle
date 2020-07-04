@@ -22,7 +22,9 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        buildConfigField "String", "SKY_SCANNER_BASE_URL", "\"http://partners.api.skyscanner.net/apiservices/\""
+        Properties secretProps = new Properties()
+        secretProps.load(new FileInputStream(file('../secret.properties')))
+        buildConfigField "String", "SKY_SCANNER_BASE_URL", secretProps['BUILD_URL']
         multiDexEnabled true
     }
     buildTypes {

@@ -20,7 +20,9 @@ android {
 
         consumerProguardFiles 'consumer-rules.pro'
 
-        buildConfigField "String", "SKY_SCANNER_API_KEY", '"ss630745725358065467897349852985"'
+        Properties secretProps = new Properties()
+        secretProps.load(new FileInputStream(file('../secret.properties')))
+        buildConfigField "String", "SKY_SCANNER_API_KEY", secretProps['API_KEY']
     }
 
     buildTypes {
